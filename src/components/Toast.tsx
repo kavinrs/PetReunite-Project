@@ -3,12 +3,14 @@ import React, { useEffect } from 'react';
 
 interface ToastProps {
   message: string;
-  type?: 'success' | 'error' | 'info';
+  type?: 'success' | 'error' | 'info' | 'warning';
+  title?: string;
+  isVisible?: boolean;
   onClose: () => void;
   duration?: number;
 }
 
-function Toast({ message, type = 'info', onClose, duration = 3000 }: ToastProps) {
+function Toast({ message, type = 'info', title, isVisible = true, onClose, duration = 3000 }: ToastProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
@@ -23,10 +25,14 @@ function Toast({ message, type = 'info', onClose, duration = 3000 }: ToastProps)
         return '#10b981';
       case 'error':
         return '#ef4444';
+      case 'warning':
+        return '#f59e0b';
       default:
         return '#3b82f6';
     }
   };
+
+  if (!isVisible) return null;
 
   return (
     <div
@@ -45,7 +51,10 @@ function Toast({ message, type = 'info', onClose, duration = 3000 }: ToastProps)
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span>{message}</span>
+        <div>
+          {title && <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>{title}</div>}
+          <span>{message}</span>
+        </div>
         <button
           onClick={onClose}
           style={{

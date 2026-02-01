@@ -2,6 +2,7 @@
 export interface ChatMessage {
   id: string;
   content: string;
+  content_type?: string;
   timestamp: Date;
   userId: string;
   userName: string;
@@ -10,6 +11,7 @@ export interface ChatMessage {
 export interface Message {
   id: string;
   content: string;
+  content_type?: string;
   timestamp: Date;
   userId: string;
   userName: string;
