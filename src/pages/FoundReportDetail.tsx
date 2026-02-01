@@ -47,7 +47,7 @@ export default function FoundReportDetail() {
     );
   }
 
-  const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
+  const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
   const origin = /^https?:/.test(apiBase)
     ? new URL(apiBase).origin
     : "http://localhost:8000";

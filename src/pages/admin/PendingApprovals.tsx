@@ -35,7 +35,7 @@ function resolvePhotoUrl(raw: any | undefined): string | undefined {
   if (!raw) return undefined;
   const s = String(raw);
   if (s.startsWith("http")) return s;
-  const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
+  const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
   const origin = /^https?:/.test(apiBase)
     ? new URL(apiBase).origin
     : "http://localhost:8000";

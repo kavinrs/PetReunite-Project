@@ -256,7 +256,7 @@ export default function Dashboard() {
       setAdminVerifyLabel("Verifying...");
       (window as any).__adminInviteVerified = null;
 
-      const base = (import.meta as any).env?.VITE_API_URL ?? "/api";
+      const base = (import.meta as any).env?.VITE_API_BASE ?? "/api";
       const resp = await fetch(
         `${base}/admin/verify-email/?email=${encodeURIComponent(email)}`,
         {

@@ -10,7 +10,7 @@ import { adminRegister, type ApiResult } from "../services/api";
 import { useViewportStandardization } from "../hooks/useViewportStandardization";
 
 // Local API base (duplicated from services/api.ts for simplicity)
-const API_BASE = (import.meta as any).env?.VITE_API_URL ?? "/api";
+const API_BASE = (import.meta as any).env?.VITE_API_BASE ?? "/api";
 
 type FormState = {
   username: string;

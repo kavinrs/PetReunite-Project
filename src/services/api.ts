@@ -6,7 +6,7 @@ export type ApiResult = {
   error?: string;
 };
 
-const API_BASE = import.meta.env.VITE_API_URL ?? "/api";
+const API_BASE = import.meta.env.VITE_API_BASE ?? "/api";
 const USERS_BASE = `${API_BASE}`;
 
 async function parseJSONSafe(resp: Response) {
