@@ -3,9 +3,10 @@ import React from 'react';
 
 interface RoomsPageProps {
   className?: string;
+  embedded?: boolean;
 }
 
-export function RoomsPage({ className }: RoomsPageProps) {
+export function RoomsPage({ className, embedded }: RoomsPageProps) {
   return (
     <div className={className}>
       <div style={{ padding: '20px', textAlign: 'center' }}>

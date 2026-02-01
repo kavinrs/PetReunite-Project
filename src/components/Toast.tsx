@@ -8,7 +8,7 @@ interface ToastProps {
   duration?: number;
 }
 
-export function Toast({ message, type = 'info', onClose, duration = 3000 }: ToastProps) {
+function Toast({ message, type = 'info', onClose, duration = 3000 }: ToastProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
@@ -63,3 +63,5 @@ export function Toast({ message, type = 'info', onClose, duration = 3000 }: Toas
     </div>
   );
 }
+
+export default Toast;

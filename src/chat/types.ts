@@ -7,6 +7,14 @@ export interface ChatMessage {
   userName: string;
 }
 
+export interface Message {
+  id: string;
+  content: string;
+  timestamp: Date;
+  userId: string;
+  userName: string;
+}
+
 export interface ChatRoom {
   id: string;
   name: string;
