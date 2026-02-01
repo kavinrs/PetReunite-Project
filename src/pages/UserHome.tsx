@@ -308,7 +308,7 @@ export default function UserHome() {
 
         if (!mounted) return;
 
-        const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+        const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
         const origin = /^https?:/.test(apiBase)
           ? new URL(apiBase).origin
           : "http://localhost:8000";
@@ -1582,7 +1582,7 @@ export default function UserHome() {
                                 }}
                               >
                           {(() => {
-                            const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+                            const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
                             const origin = /^https?:/.test(apiBase) ? new URL(apiBase).origin : "http://localhost:8000";
                             const raw = r.photo_url || r.photo;
                             const src = raw ? (String(raw).startsWith("http") ? String(raw) : (String(raw).startsWith("/") ? origin + String(raw) : origin + "/media/" + String(raw))) : null;
@@ -1634,7 +1634,7 @@ export default function UserHome() {
                             activityFoundFiltered.map((r: any) => (
                               <div key={`found-${r.id}`} style={{ background: "#fafafa", border: "1px solid #f1f5f9", borderRadius: 16, padding: 16, display: "grid", gridTemplateColumns: "80px 1fr auto", gap: 16 }}>
                           {(() => {
-                            const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+                            const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
                             const origin = /^https?:/.test(apiBase) ? new URL(apiBase).origin : "http://localhost:8000";
                             const raw = r.photo_url || r.photo;
                             const src = raw ? (String(raw).startsWith("http") ? String(raw) : (String(raw).startsWith("/") ? origin + String(raw) : origin + "/media/" + String(raw))) : null;
@@ -1708,7 +1708,7 @@ export default function UserHome() {
                             activityAdoptionsFiltered.map((a: any) => (
                               <div key={`adopt-${a.id}`} style={{ background: "#fafafa", border: "1px solid #f1f5f9", borderRadius: 16, padding: 16, display: "grid", gridTemplateColumns: "80px 1fr auto", gap: 16 }}>
                           {(() => {
-                            const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+                            const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
                             const origin = /^https?:/.test(apiBase) ? new URL(apiBase).origin : "http://localhost:8000";
                             const raw = a.pet?.photos || a.pet?.photo || a.pet?.photo_url;
                             const src = raw ? (String(raw).startsWith("http") ? String(raw) : (String(raw).startsWith("/") ? origin + String(raw) : origin + "/media/" + String(raw))) : null;

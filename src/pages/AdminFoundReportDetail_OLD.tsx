@@ -147,7 +147,7 @@ export default function AdminFoundReportDetail() {
     );
   if (!report) return null;
 
-  const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+  const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
   const origin = /^https?:/.test(apiBase)
     ? new URL(apiBase).origin
     : "http://localhost:8000";

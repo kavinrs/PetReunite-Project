@@ -272,7 +272,7 @@ function ActivityCard({ item }: { item: ActivityRow }) {
   const createdAt = r.created_at || null;
 
   // -------- image URL logic (same pattern as other admin cards) --------
-  const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+  const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
   const origin = /^https?:/.test(apiBase)
     ? new URL(apiBase).origin
     : "http://localhost:8000";

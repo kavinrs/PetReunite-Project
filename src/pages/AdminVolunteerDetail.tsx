@@ -92,7 +92,7 @@ export default function AdminVolunteerDetail() {
         <div style={{ display: "grid", gridTemplateColumns: "160px 1fr 1fr", gap: 12, alignItems: "stretch" }}>
           <div style={{ width: 160, height: 160, borderRadius: 12, overflow: "hidden", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center", gridRow: "span 2" }}>
             {(() => {
-              const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+              const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
               const origin = /^https?:/.test(apiBase)
                 ? new URL(apiBase).origin
                 : "http://localhost:8000";

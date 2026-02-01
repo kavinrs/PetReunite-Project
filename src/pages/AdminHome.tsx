@@ -1424,7 +1424,7 @@ function AdminHome() {
                   : isLost
                     ? `${r.location || r.city || r.found_city || ""}${r.state ? ", " + r.state : ""}`
                     : `${r.found_city || r.city || ""}${r.state ? ", " + r.state : ""}`;
-                const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+                const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
                 const origin = /^https?:/.test(apiBase)
                   ? new URL(apiBase).origin
                   : "http://localhost:8000";
@@ -2458,7 +2458,7 @@ function AdminHome() {
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {filtered.map((p: any) => {
-                const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+                const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
                 const origin = /^https?:/.test(apiBase)
                   ? new URL(apiBase).origin
                   : "http://localhost:8000";
@@ -3037,7 +3037,7 @@ function AdminHome() {
     useEffect(() => {
       let cancelled = false;
       async function load() {
-        const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+        const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
         const origin = /^https?:/.test(apiBase)
           ? new URL(apiBase).origin
           : "http://localhost:8000";
@@ -3330,7 +3330,7 @@ function AdminHome() {
                   ? `${r.location_city || ""}${r.location_state ? ", " + r.location_state : ""}`
                   : `${r.pet?.location_city || ""}${r.pet?.location_state ? ", " + r.pet?.location_state : ""}`;
 
-          const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+          const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
           const origin = /^https?:/.test(apiBase)
             ? new URL(apiBase).origin
             : "http://localhost:8000";
@@ -3387,7 +3387,7 @@ function AdminHome() {
                   }}
                 >
                   {(() => {
-                    const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+                    const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
                     const origin = /^https?:/.test(apiBase) ? new URL(apiBase).origin : "http://localhost:8000";
                     // For adoption pets (All filter), use r.photos; for adoption requests, use r.pet?.photos
                     const raw = isVolunteers
@@ -4993,7 +4993,7 @@ function AdminHome() {
                 </div>
               ) : (
                 eligibleForAdoption.map((pet: any) => {
-                  const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+                  const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
                   const origin = /^https?:/.test(apiBase) ? new URL(apiBase).origin : "http://localhost:8000";
                   const rawPhoto = pet.photo_url || pet.photo;
                   const photoSrc = rawPhoto ? (String(rawPhoto).startsWith("http") ? String(rawPhoto) : (String(rawPhoto).startsWith("/") ? origin + String(rawPhoto) : origin + "/media/" + String(rawPhoto))) : null;
@@ -5262,7 +5262,7 @@ function AdminHome() {
                         : isLost
                           ? `${r.location || r.city || r.found_city || ""}${r.state ? ", " + r.state : ""}`
                           : `${r.found_city || r.city || ""}${r.state ? ", " + r.state : ""}`;
-                      const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+                      const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
                       const origin = /^https?:/.test(apiBase)
                         ? new URL(apiBase).origin
                         : "http://localhost:8000";

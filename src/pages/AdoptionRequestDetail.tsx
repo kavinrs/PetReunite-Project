@@ -116,7 +116,7 @@ export default function AdoptionRequestDetail() {
   const pet = request.pet || {};
   const requester = request.requester || {};
 
-  const apiBase = (import.meta as any).env?.VITE_API_BASE ?? "/api";
+  const apiBase = (import.meta as any).env?.VITE_API_URL ?? "/api";
   const origin = /^https?:/.test(apiBase)
     ? new URL(apiBase).origin
     : "http://localhost:8000";
