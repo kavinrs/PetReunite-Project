@@ -1,160 +1,75 @@
-# Pet Adoption & Rescue – Chat Feature Scaffold
+# React + TypeScript + Vite
 
-This repository includes a scaffold for a **Pet Adoption & Rescue chat feature** using:
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- **Backend (server/)**: Django, Django REST Framework, SimpleJWT, Django Channels, Redis channel layer, PostgreSQL.
-- **Frontend (client/)**: React + TypeScript (Vite), axios, native WebSocket API, React Router.
+Currently, two official plugins are available:
 
-The existing project code (e.g. `Backend/`, `frontend/`) remains unchanged. The chat system is a **new, self-contained server/client pair** under `server/` and `client/`.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
----
+## React Compiler
 
-## Project Layout
+The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
-Planned structure for the chat feature:
+Note: This will impact Vite dev & build performances.
 
-- `server/`
-  - Django project (ASGI, Channels, REST API)
-  - `chat` app with rooms, members, messages, audit logs
-  - JWT auth (REST + WebSocket handshake)
-  - Management command to create a test admin
-- `client/`
-  - Vite React + TypeScript SPA
-  - Auth pages (login/register)
-  - Room list and room detail chat view
-  - Admin room creation + member management UI
+## Expanding the ESLint configuration
 
-> **Note:** This README describes the chat scaffold we are building step‑by‑step. Some folders and files may not exist yet if you are reading this before all steps are completed.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
----
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## Environment Variables (Overview)
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-You will have **two `.env` files**:
-
-- `server/.env` (backend)
-  - `DJANGO_SECRET_KEY`
-  - `DEBUG`
-  - `DATABASE_URL` (PostgreSQL)
-  - `REDIS_URL`
-  - `SIMPLE_JWT_ACCESS_TOKEN_LIFETIME_DAYS`
-  - `ALLOWED_HOSTS`
-  - `PORT`
-- `client/.env` (frontend)
-  - `VITE_API_BASE`
-  - `VITE_WS_BASE`
-
-Concrete examples will be in `server/.env.example` and `client/.env.example`.
-
-> **Never commit real secrets.** Only commit the `*.env.example` files.
-
----
-
-## Basic Backend Workflow (Once Scaffold Is Complete)
-
-From the repository root:
-
-```bash
-# 1) Create and activate a virtual environment (recommended path)
-python -m venv .venv
-
-# Windows PowerShell
-. .venv/Scripts/Activate.ps1
-
-# 2) Install backend dependencies (will be defined in server/requirements.txt)
-pip install -r server/requirements.txt
-
-# 3) Copy env example and edit values
-copy server/.env.example server/.env
-# Edit server/.env to set DJANGO_SECRET_KEY, DATABASE_URL, REDIS_URL, etc.
-
-# 4) Apply database migrations (after Django project is generated)
-cd server
-python manage.py migrate
-
-# 5) (Optional) Create a test admin user
-python manage.py create_test_admin
-
-# 6) Run the development server (ASGI/Channels)
-python manage.py runserver 0.0.0.0:8000
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-In production, you’ll use an ASGI server like **Daphne** or **Uvicorn** instead of `runserver`.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
----
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## Basic Frontend Workflow (Once Scaffold Is Complete)
-
-From the repository root:
-
-```bash
-cd client
-
-# 1) Install dependencies
-npm install
-
-# 2) Copy env example and edit values
-copy .env.example .env
-# Ensure VITE_API_BASE and VITE_WS_BASE match your backend
-
-# 3) Start the Vite dev server
-npm run dev
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-
-The default frontend origin will be `http://localhost:5173` and the backend API at `http://localhost:8000/api` (configurable via env).
-
----
-
-## Git Ignore Recommendations
-
-Your existing `.gitignore` file is kept as‑is. For the chat scaffold, ensure the following are **ignored** (add them manually if not already present):
-
-```gitignore
-# Python virtualenvs
-.venv/
-venv/
-
-# Node modules
-node_modules/
-
-# Environment files
-.env
-*.env
-server/.env
-client/.env
-
-# Build artifacts
-server/staticfiles/
-client/dist/
-
-# Python cache
-__pycache__/
-*.py[cod]
-
-# IDE/editor
-.vscode/
-.idea/
-*.log
-```
-
----
-
-## Next Steps (Planned Scaffold)
-
-The remaining steps we will implement **one by one**:
-
-1. **Server env & setup**
-   - `server/.env.example`
-   - `server/requirements.txt`
-2. **Django project & app**
-   - ASGI/Channels config, REST framework, CORS, JWT
-3. **Chat models & migrations**
-   - `ChatRoom`, `ChatRoomMember`, `Message`, `AuditLog`
-4. **Serializers, permissions, and REST endpoints**
-5. **Channels consumer & WebSocket routing**
-6. **Tests and sanity checks**
-7. **Client scaffold (Vite React TS)**
-8. **Client pages, services, and WebSocket integration**
-9. **Sanity report and example curl/WebSocket flows**
-
-We will fill these pieces in sequentially so that the project remains consistent and buildable at each major step.
