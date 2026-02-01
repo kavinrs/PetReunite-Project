@@ -7,7 +7,13 @@ export default defineConfig({
   server: {
     proxy: {
       // forward API calls to Django backend
-      '/api': { target: 'http://localhost:8000', changeOrigin: true, secure: false },
+      // For local development, use localhost
+      // For production, this proxy is not used (uses VITE_API_BASE instead)
+      '/api': { 
+        target: process.env.VITE_API_BASE || 'http://localhost:8000', 
+        changeOrigin: true, 
+        secure: false 
+      },
     }
   }
 });
